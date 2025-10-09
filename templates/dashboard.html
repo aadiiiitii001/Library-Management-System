@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dashboard</h2>
+<div class="row text-center mb-4">
+  <div class="col"><h4>Total Books: {{ total_books }}</h4></div>
+  <div class="col"><h4>Total Members: {{ total_members }}</h4></div>
+  <div class="col"><h4>Books Issued: {{ total_issued }}</h4></div>
+</div>
+<div>
+  {{ chart_html|safe }}
+</div>
+{% endblock %}

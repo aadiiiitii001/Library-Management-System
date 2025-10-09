@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Books</h2>
+<form method="POST" action="/add_book" class="mb-3">
+  <input name="title" placeholder="Title" required>
+  <input name="author" placeholder="Author">
+  <button class="btn btn-primary">Add</button>
+</form>
+
+<ul>
+  {% for b in books %}
+  <li>{{ b.title }} - {{ b.author }} {% if b.available %}(Available){% else %}(Issued){% endif %}</li>
+  {% endfor %}
+</ul>
+
+<hr>
+
+<h2>Members</h2>
+<form method="POST" action="/add_member" class="mb-3">
+  <input name="name" placeholder="Name" required>
+  <input name="email" placeholder="Email" required>
+  <button class="btn btn-success">Add</button>
+</form>
+
+<ul>
+  {% for m in members %}
+  <li>{{ m.name }} ({{ m.email }})</li>
+  {% endfor %}
+</ul>
+
+<hr>
+
+<h2>Issue a Book</h2>
+<form method="POST" action="/issue_book">
+  <select name="book_id">
+    {% for b in books if b.available %}
+    <option value="{{ b.id }}">{{ b.title }}</option>
+    {% endfor %}
+  </select>
+  <select name="member_id">
+    {% for m in members %}
+    <option value="{{ m.id }}">{{ m.name }}</option>
+    {% endfor %}
+  </select>
+  <button class="btn btn-warning">Issue</button>
+</form>
+
+<hr>
+<h2>Issued Books</h2>
+<ul>
+  {% for i in issues %}
+  <li>{{ i.book.title }} → {{ i.member.name }}
+    <a href="/return_book/{{ i.id }}" class="btn btn-sm btn-secondary">Return</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,12 +1,50 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
-<h2>Dashboard</h2>
-<div class="row text-center mb-4">
-  <div class="col"><h4>Total Books: {{ total_books }}</h4></div>
-  <div class="col"><h4>Total Members: {{ total_members }}</h4></div>
-  <div class="col"><h4>Books Issued: {{ total_issued }}</h4></div>
+
+<h2 class="mb-4 animate__animated animate__fadeInDown">📊 Admin Dashboard</h2>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card p-3 bg-primary text-white">
+            <h5>Total Books</h5>
+            <h2>{{ total_books }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 bg-success text-white">
+            <h5>Members</h5>
+            <h2>{{ total_members }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 bg-warning text-white">
+            <h5>Issued Books</h5>
+            <h2>{{ total_issued }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 bg-danger text-white">
+            <h5>Overdue</h5>
+            <h2>{{ overdue }}</h2>
+        </div>
+    </div>
+
 </div>
-<div>
-  {{ chart_html|safe }}
+
+<hr>
+
+<h4>📈 Books Issued Per Month</h4>
+<div class="card p-3 mb-4">
+    {{ chart_html | safe }}
 </div>
+
+<h4>🔥 Most Issued Books</h4>
+<div class="card p-3 mb-4">
+    {{ popular_html | safe }}
+</div>
+
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class="mb-3">Search Results for: <b>{{ q }}</b></h3>
+
+{% if results %}
+<div class="row">
+    {% for b in results %}
+    <div class="col-md-4 mb-3">
+        <div class="card p-3">
+            <h5>{{ b.title }}</h5>
+            <p class="text-muted">{{ b.author }}</p>
+            <p><b>Available:</b> {{ b.available }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="alert alert-warning">No books found.</div>
+{% endif %}
+
+{% endblock %}
